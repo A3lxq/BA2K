@@ -85,6 +85,20 @@ class Database:
     def load_repos(self) -> dict[str, RepoInfo]:
         return {r["full_name"]: RepoInfo.model_validate_json(r["data"]) for r in self.conn.execute("SELECT full_name,data FROM repos")}
 
+    def set_repo_status(self, key: str, status: str) -> None:
+        with self.transaction() as c:
+            c.execute(
+                "INSERT INTO repo_status(full_name,status,checked_at) VALUES (?,?,?) "
+                "ON CONFLICT(full_name) DO UPDATE SET status=excluded.status, checked_at=excluded.checked_at",
+                (key.lower(), status, utcnow_iso()),
+            )
+
+    def repo_status_times(self) -> dict[str, tuple[str, str]]:
+        return {r["full_name"]: (r["status"], r["checked_at"]) for r in self.conn.execute("SELECT full_name,status,checked_at FROM repo_status")}
+
+    def missing_repos(self) -> set[str]:
+        return {r["full_name"] for r in self.conn.execute("SELECT full_name FROM repo_status WHERE status='missing'")}
+
     # ---- tool records ---------------------------------------------------------------------
     def save_tool(self, tool: ToolRecord) -> None:
         with self.transaction() as c:

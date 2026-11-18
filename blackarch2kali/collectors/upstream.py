@@ -19,7 +19,7 @@ class Upstream:
 
 
 def classify(url: str | None) -> Upstream:
-    if not url:
+    if not url or url.strip().lower() in {"none", "n/a", "-"}:
         return Upstream(None, "none")
     gh = parse_github_url(url)
     if gh:

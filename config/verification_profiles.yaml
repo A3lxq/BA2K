@@ -1,0 +1,7 @@
+# Verification profiles: how to safely probe an installed tool.
+# Only version/help style, non-destructive invocations belong here. Tools WITHOUT a profile are
+# checked passively (binary existence + package ownership) and never executed.
+profiles:
+  nmap: {binary: nmap, version_args: ["--version"], help_args: ["--help"]}
+  sqlmap: {binary: sqlmap, version_args: ["--version"], help_args: ["--help"]}
+  nikto: {binary: nikto, version_args: ["-Version"], help_args: ["-Help"]}

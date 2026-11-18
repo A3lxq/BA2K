@@ -12,7 +12,8 @@ _SECRET = re.compile(r"(?i)\b(password|passwd|secret|api[_-]?key|token)\b\s*[:=]
 _PLACEHOLDER = re.compile(r"(?i)(example|changeme|your[_-]?|<.+>|xxxx|\*\*\*|placeholder|dummy|test)")
 _POSTINSTALL = re.compile(r"(?im)(postinstall|post-install|preinstall)\s*[\"']?\s*[:=]\s*[\"']?[^\n]*(curl|wget|bash|sh|eval|powershell)")
 _DOWNLOAD = re.compile(r"(?i)\b(curl|wget)\b[^\n]*https?://")
-_PRIV = re.compile(r"--privileged|--cap-add\s*=?\s*(ALL|SYS_ADMIN)|--net(work)?[= ]host|-v\s+/:/|/var/run/docker\.sock")
+_PRIV = re.compile(r"--privileged|--cap-add\s*=?\s*(ALL|SYS_ADMIN)|-v\s+/:/|/var/run/docker\.sock")
+_HOSTNET = re.compile(r"--net(work)?[= ]host")
 
 
 def scan_text(text: str, source: str) -> list[RiskFinding]:
@@ -32,6 +33,9 @@ def scan_text(text: str, source: str) -> list[RiskFinding]:
     if m3:
         findings.append(RiskFinding(dimension=RiskDimension.INSTALLATION, level=Risk.HIGH, rule="privileged-container",
                                     message=f"Privileged/host-level container option referenced in {source}", evidence=m3.group(0)))
+    m4 = _HOSTNET.search(text)
+    if m4:
+        findings.append(RiskFinding(dimension=RiskDimension.INSTALLATION, level=Risk.MEDIUM, rule="host-network-container", message=f"Host networking referenced in {source}; the framework never uses it by default", evidence=m4.group(0)))
     return findings
 
 

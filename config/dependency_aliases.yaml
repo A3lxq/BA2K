@@ -1,0 +1,25 @@
+# Arch/BlackArch dependency name -> candidate Debian/Kali package names (first that exists in the
+# index wins). Entries are only used when the target exists in the loaded package index;
+# nothing here is trusted blindly.
+aliases:
+  glibc: [libc6]
+  gcc-libs: [libgcc-s1]
+  zlib: [zlib1g]
+  python: [python3]
+  python-pip: [python3-pip]
+  python-pipx: [pipx]
+  ncurses: [libncurses6]
+  libxslt: [libxslt1.1]
+  libffi: [libffi8]
+  sqlite: [libsqlite3-0, sqlite3]
+  openssl: [libssl3t64, libssl3, openssl]
+  libpcap: [libpcap0.8t64, libpcap0.8]
+  curl: [curl]
+  jre-openjdk: [default-jre]
+  jdk-openjdk: [default-jdk]
+  jre8-openjdk: [default-jre]
+  go: [golang-go]
+  nodejs: [nodejs]
+  npm: [npm]
+  ruby: [ruby]
+  perl: [perl]

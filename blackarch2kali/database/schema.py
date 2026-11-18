@@ -1,6 +1,6 @@
 """SQL schema. Kept dialect-light (TEXT/INTEGER) so a PostgreSQL backend can reuse it."""
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 MIGRATIONS: dict[int, list[str]] = {
     1: [
@@ -45,5 +45,13 @@ MIGRATIONS: dict[int, list[str]] = {
         )""",
         "CREATE INDEX idx_changes_run ON changes(run_id)",
         "CREATE INDEX idx_history_name ON package_history(name)",
-    ]
+    ],
+    2: [
+        # Distinguishes "GitHub said 404" from "not fetched yet".
+        """CREATE TABLE repo_status (
+            full_name TEXT PRIMARY KEY,
+            status TEXT NOT NULL,
+            checked_at TEXT NOT NULL
+        )""",
+    ],
 }

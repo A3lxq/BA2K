@@ -6,6 +6,9 @@ import logging
 import re
 from typing import Any
 
+from ..analyzers.language import python2_only
+from ..analyzers.readme import analyze_readme
+from ..analyzers.security import analyze_text_risks
 from ..config import Settings
 from ..errors import CollectorError, RateLimitError
 from ..http import HttpClient
@@ -23,8 +26,8 @@ class GitHubCollector:
 
     def _get_json(self, path: str, *, ok: tuple[int, ...] = (200,)) -> tuple[int, Any]:
         resp = self.http.get(f"{self.api}{path}", headers={"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}, ok_statuses=ok)
-        if resp.status == 404:
-            return 404, None
+        if resp.status != 200:
+            return resp.status, None  # 404/409/410...: no body is parsed
         try:
             return resp.status, resp.json()
         except ValueError as exc:
@@ -60,7 +63,7 @@ class GitHubCollector:
         try:
             _, langs = self._get_json(f"/repos/{slug}/languages", ok=(200, 404))
             if isinstance(langs, dict):
-                info.languages = {str(k): int(v) for k, v in langs.items()}
+                info.languages = {str(k): v for k, v in langs.items() if isinstance(v, int) and not isinstance(v, bool)}
             _, rel = self._get_json(f"/repos/{slug}/releases/latest", ok=(200, 404))
             if isinstance(rel, dict) and rel.get("tag_name"):
                 info.latest_release = str(rel["tag_name"])
@@ -74,18 +77,26 @@ class GitHubCollector:
                     info.last_commit = commits[0].get("commit", {}).get("committer", {}).get("date")
                     sha = commits[0].get("sha")
                     info.head_sha = sha if isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{40}", sha) else None
+            _, root = self._get_json(f"/repos/{slug}/contents", ok=(200, 404))
+            if isinstance(root, list):
+                info.root_files = sorted(str(e["name"]) for e in root if isinstance(e, dict) and "name" in e)
             status, readme = self._get_json(f"/repos/{slug}/readme", ok=(200, 404))
             info.has_readme = status == 200
             if isinstance(readme, dict) and readme.get("download_url"):
-                info.has_build_instructions = self._readme_has_build(str(readme["download_url"]))
+                self._analyze_readme(info, str(readme["download_url"]))
         except RateLimitError:
             raise
         except CollectorError as exc:
             log.warning("partial GitHub data for %s: %s", slug, exc)
 
-    def _readme_has_build(self, url: str) -> bool | None:
+    def _analyze_readme(self, info: RepoInfo, url: str) -> None:
+        """Fetch README as inert text and extract install hints/risk findings. Nothing is executed."""
         try:
-            body = self.http.get(url).content[:200_000].decode("utf-8", errors="replace")
+            body = self.http.get(url).content[:300_000].decode("utf-8", errors="replace")
         except (CollectorError, ValueError):
-            return None
-        return bool(_BUILD_HINTS.search(body))  # text is only pattern-matched, never executed
+            return
+        ra = analyze_readme(body)
+        info.has_build_instructions = bool(_BUILD_HINTS.search(body)) or ra.has_build_instructions
+        info.readme_install_commands = [c[:300] for c in ra.install_commands[:40]]
+        info.readme_python2_only = python2_only(body)
+        info.readme_findings = [f.model_dump(mode="json") | {"scope": "upstream"} for f in analyze_text_risks(body, ra)]

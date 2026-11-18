@@ -20,6 +20,7 @@ from .security.command_safety import validate_url
 log = logging.getLogger(__name__)
 MAX_RATELIMIT_WAIT = 120.0
 MAX_BODY_BYTES = 256 * 1024 * 1024
+MAX_REDIRECTS = 5
 
 
 @dataclass
@@ -56,8 +57,7 @@ class HttpClient:
         self._client = httpx.Client(
             transport=transport,
             timeout=self.settings.timeout_seconds,
-            follow_redirects=True,
-            max_redirects=5,
+            follow_redirects=False,  # redirects are followed manually so every hop is re-validated
             headers={"User-Agent": "blackarch2kali/0.1 (+https://github.com/A3lxq/BA2K)"},
         )
 
@@ -116,7 +116,7 @@ class HttpClient:
         last_exc: Exception | None = None
         for attempt in range(self.settings.max_retries + 1):
             try:
-                r = self._client.get(url, headers=req_headers)
+                r = self._follow(url, req_headers)
             except httpx.HTTPError as exc:
                 last_exc = exc
                 log.warning("request error (%s) attempt %d: %s", type(exc).__name__, attempt + 1, url)
@@ -145,6 +145,24 @@ class HttpClient:
                 return resp
             raise CollectorError(f"HTTP {resp.status} from {url}")
         raise CollectorError(f"Giving up on {url} after {self.settings.max_retries + 1} attempts: {last_exc}")
+
+    def _follow(self, url: str, headers: dict[str, str]) -> httpx.Response:
+        """GET with manual redirect handling: each hop must pass URL validation (https, no IPs/localhost);
+        the Authorization header is recomputed per host so a token never follows a redirect elsewhere."""
+        current = url
+        base_headers = {k: v for k, v in headers.items() if k.lower() != "authorization"}
+        for _ in range(MAX_REDIRECTS + 1):
+            hop_headers = self._headers_for(current, base_headers)
+            r = self._client.get(current, headers=hop_headers)
+            if r.status_code not in (301, 302, 303, 307, 308):
+                return r
+            location = r.headers.get("location")
+            if not location:
+                return r
+            nxt = str(httpx.URL(current).join(location))
+            validate_url(nxt)  # raises UnsafeInputError for http://, raw IPs, localhost, credentials...
+            current = nxt
+        raise CollectorError(f"Too many redirects fetching {url}")
 
     def _touch_cache(self, url: str) -> None:
         paths = self._cache_paths(url)

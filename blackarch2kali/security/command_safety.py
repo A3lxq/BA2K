@@ -14,6 +14,7 @@ from ..errors import UnsafeInputError
 # Debian policy package names + Arch names (arch allows '+', '_', '@', '.', digits). Must start alnum.
 _PKG_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9+._@-]{0,127}$")
 _SHELL_META = set(";&|`$<>\\\n\r\"'(){}*?!~#")
+SAFE_ENV_KEYS = ("PATH", "HOME", "LANG", "LC_ALL", "TERM", "USER", "LOGNAME", "TMPDIR", "XDG_DATA_HOME", "XDG_CACHE_HOME", "GOPATH", "GOBIN", "CARGO_HOME", "RUSTUP_HOME", "PIPX_HOME", "PIPX_BIN_DIR")
 _ALLOWED_SCHEMES = {"https"}
 _GH_SLUG = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$")
 _GH_REPO = re.compile(r"^[A-Za-z0-9._-]{1,100}$")

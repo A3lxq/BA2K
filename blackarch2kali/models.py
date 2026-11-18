@@ -139,6 +139,10 @@ class RepoInfo(BaseModel):
     has_build_instructions: bool | None = None
     homepage: str | None = None
     renamed_from: str | None = None
+    readme_install_commands: list[str] = Field(default_factory=list)  # inert text extracted from README (never executed)
+    readme_python2_only: bool = False
+    readme_findings: list[dict[str, Any]] = Field(default_factory=list)
+    root_files: list[str] = Field(default_factory=list)  # top-level file names (build-system evidence)
     head_sha: str | None = None  # commit hash of default branch tip at retrieval time
     provenance: Provenance
 
@@ -173,13 +177,15 @@ class RiskFinding(BaseModel):
     rule: str
     message: str
     evidence: str | None = None
+    scope: str = "all"  # "upstream": concerns upstream code/instructions; irrelevant to a distro-package (APT) install
 
 
 class ToolRecord(BaseModel):
     model_config = ConfigDict(extra="forbid")
     tool_name: str
     blackarch_package: str
-    category: list[str] = Field(default_factory=list)
+    category: list[str] = Field(default_factory=list)  # official BlackArch groups (authoritative)
+    research_categories: list[str] = Field(default_factory=list)  # research categories mapped from official groups
     derived_categories: list[str] = Field(default_factory=list)
     description: str | None = None
     github_repo: str | None = None
@@ -198,6 +204,7 @@ class ToolRecord(BaseModel):
     preferred_install_method: str | None = None
     dependencies: list[str] = Field(default_factory=list)
     install_commands: list[list[str]] = Field(default_factory=list)
+    install_options: list[dict[str, Any]] = Field(default_factory=list)  # full ranked option set incl. blocked ones
     verification_command: list[str] | None = None
     docker_support: bool | None = None
     security_risk: str = UNKNOWN
@@ -206,5 +213,6 @@ class ToolRecord(BaseModel):
     last_checked: str = Field(default_factory=utcnow_iso)
     notes: list[str] = Field(default_factory=list)
     replacement_if_dead: str | None = None
+    dependency_resolution: dict[str, Any] = Field(default_factory=dict)
     upstream_verification: dict[str, Any] = Field(default_factory=dict)
     reproducibility: dict[str, Any] = Field(default_factory=dict)
