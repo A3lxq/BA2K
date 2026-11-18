@@ -1,0 +1,29 @@
+# BlackArch2Kali central configuration. Environment variable GITHUB_TOKEN supplies the token (never store it here).
+state_dir: ./state
+generated_dir: ./generated
+data_dir: ./data
+sources:
+  blackarch_db_urls:
+    - https://www.blackarch.org/blackarch/blackarch/os/x86_64/blackarch.db
+    - https://mirror.cyberbits.eu/blackarch/blackarch/os/x86_64/blackarch.db
+  kali_packages_url: https://kali.download/kali/dists/kali-rolling/main/binary-amd64/Packages.gz
+  debian_packages_url: https://deb.debian.org/debian/dists/stable/main/binary-amd64/Packages.gz
+  github_api: https://api.github.com
+http:
+  timeout_seconds: 30
+  max_retries: 4
+  backoff_base_seconds: 1.0
+  cache_ttl_seconds: 21600
+github:
+  max_repos_per_sync: 0     # 0 = unlimited
+  request_pause_seconds: 0.0
+maintenance:
+  active_days: 90
+  maintained_days: 365
+  low_activity_days: 730
+  release_grace_days: 365
+sync:
+  interval_hours: 24
+  incremental: true
+policy_file: config/installation_policies.yaml
+categories_file: config/categories.yaml

@@ -16,7 +16,7 @@ runner = CliRunner()
 def env(tmp_path, monkeypatch):
     cfg = tmp_path / "config"
     shutil.copytree("config", cfg)
-    s = (cfg / "settings.yaml").read_text().replace("generated_dir: ./generated", f"generated_dir: {tmp_path / 'gen'}")
+    s = (cfg / "settings.yaml").read_text().replace("generated_dir: ./generated", f"generated_dir: {tmp_path / 'gen'}").replace("data_dir: ./data", f"data_dir: {tmp_path / 'data'}")
     (cfg / "settings.yaml").write_text(s)
     monkeypatch.setattr(Services, "http", lambda self: make_client(world_handler()))
     monkeypatch.setattr("blackarch2kali.installers.base.Installer.missing_prerequisites", lambda self: [])
@@ -55,6 +55,9 @@ def test_sync_generates_reports_and_json(env):
     r = run("--json", "sync") if False else runner.invoke(cli.app, ["--json", "--config-dir", str(tmp / "config"), "--home", str(tmp / "state"), "sync"])
     assert r.exit_code == 0, r.output
     assert (tmp / "gen/reports/full_inventory.json").exists() and (tmp / "gen/categories/wireless.json").exists()
+    import yaml
+
+    assert yaml.safe_load((tmp / "data/tools.yaml").read_text())["tools"] and (tmp / "data/compatibility.json").exists() and (tmp / "data/dependency_graph.json").exists()
 
 
 def test_inventory_search_categories(synced):

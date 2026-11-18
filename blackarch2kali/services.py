@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -47,8 +48,23 @@ def _host(url: str) -> str:
     return urlparse(url).hostname or ""
 
 
+def packaged_defaults() -> Path:
+    return Path(__file__).parent / "defaults"
+
+
 def build_services(config_dir: Path = Path("config"), home: Path | None = None) -> Services:
+    """Use `config_dir` when it has settings.yaml; otherwise fall back to the packaged defaults and
+    keep state under the user's data directory (so a pipx install works from any directory)."""
+    using_defaults = not (config_dir / "settings.yaml").exists()
+    if using_defaults:
+        config_dir = packaged_defaults()
     settings = load_settings(config_dir / "settings.yaml", home)
+    if using_defaults:
+        base = Path(os.environ.get("XDG_DATA_HOME") or Path.home() / ".local/share") / "blackarch2kali"
+        if home is None and not os.environ.get("BLACKARCH2KALI_HOME"):
+            settings.state_dir = base / "state"
+        settings.generated_dir = base / "generated"
+        settings.data_dir = base / "data"
     policy = load_yaml(config_dir / "installation_policies.yaml") if (config_dir / "installation_policies.yaml").exists() else {}
     cats = load_category_config(config_dir / "categories.yaml")
     settings.state_dir.mkdir(parents=True, exist_ok=True)

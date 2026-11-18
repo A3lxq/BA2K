@@ -91,9 +91,12 @@ def init() -> None:
 @app.command()
 def sync(full: Annotated[bool, typer.Option("--full", help="Re-fetch everything.")] = False,
          reports: Annotated[bool, typer.Option("--reports/--no-reports")] = True,
-         schedule: Annotated[bool, typer.Option("--schedule", help="Run repeatedly at the configured interval.")] = False) -> None:
+         schedule: Annotated[bool, typer.Option("--schedule", help="Run repeatedly at the configured interval.")] = False,
+         max_repos: Annotated[int | None, typer.Option("--max-repos", help="Cap GitHub repositories fetched this run (rate-limit friendly).")] = None) -> None:
     """Synchronize metadata: discovery, analysis, planning data. Never installs anything."""
     svc = services()
+    if max_repos is not None:
+        svc.settings.github.max_repos_per_sync = max(max_repos, 0)
     from .synchronization.scheduler import run_loop
 
     def job() -> dict[str, Any]:
@@ -105,7 +108,7 @@ def sync(full: Annotated[bool, typer.Option("--full", help="Re-fetch everything.
         finally:
             http.close()
         if reports:
-            generate_reports(svc.db.load_tools(), svc.db.load_repos(), svc.settings.generated_dir, svc.categories_cfg)
+            generate_reports(svc.db.load_tools(), svc.db.load_repos(), svc.settings.generated_dir, svc.categories_cfg, svc.settings.data_dir)
         emit(result.to_dict()) if State.json else console.print(f"sync #{result.run_id} {result.status}: {result.inventory} repos={result.repos_fetched} analyzed={result.tools_analyzed}" + "".join(f"\n  [yellow]warning:[/yellow] {w}" for w in result.warnings))
         return result.to_dict()
 
@@ -121,7 +124,7 @@ def sync(full: Annotated[bool, typer.Option("--full", help="Re-fetch everything.
 @app.command()
 def update() -> None:
     """Refresh metadata incrementally and regenerate reports (does NOT install or upgrade software)."""
-    sync(full=False, reports=True, schedule=False)
+    sync(full=False, reports=True, schedule=False, max_repos=None)
 
 
 @app.command()
@@ -337,9 +340,40 @@ def install(
 
 
 @app.command()
-def verify(tool: str) -> None:
+def dependencies(tool: Annotated[str | None, typer.Argument()] = None) -> None:
+    """Dependency resolution for one tool, or a summary across all tools."""
+    tools = services().db.load_tools()
+    if tool:
+        rec = require_tool(tool)
+        data = {"tool": tool, "dependencies": rec.dependencies, "resolution": rec.dependency_resolution}
+        if State.json:
+            return emit(data)
+        console.print(f"{tool}: {len(rec.dependencies)} dependencies", markup=False)
+        for k, v in rec.dependency_resolution.items():
+            console.print(f"  {k}: {v}", markup=False)
+        return None
+    summary = {k: sum(1 for t in tools.values() if t.dependency_resolution.get(k)) for k in ("missing", "cycles", "version_conflicts", "arch_conflicts", "package_conflicts")}
+    emit(summary) if State.json else console.print(f"tools with: {summary}", markup=False)
+    return None
+
+
+@app.command()
+def verify(tool: Annotated[str | None, typer.Argument()] = None, all_profiled: Annotated[bool, typer.Option("--all", help="Verify every tool that has a verification profile.")] = False) -> None:
     """Verify an installed tool (passive checks; executes only a profile's version/help probes)."""
     svc = services()
+    if all_profiled:
+        profiles = load_profiles(svc.config_dir / "verification_profiles.yaml")
+        bad = []
+        for name, prof in sorted(profiles.items()):
+            rep = verify_tool(name, prof, extra_bin_dirs=[Path.home() / ".local/bin", Path.home() / "go/bin", Path.home() / ".cargo/bin"])
+            console.print(f"{name}: {'OK' if rep.ok else 'FAILED'}", markup=False)
+            if not rep.ok:
+                bad.append(name)
+        if bad:
+            raise typer.Exit(EXIT_CHECK_FAILED)
+        return
+    if not tool:
+        raise fail("specify a tool or --all", EXIT_USAGE)
     rec = require_tool(tool)
     profiles = load_profiles(svc.config_dir / "verification_profiles.yaml")
     rep = verify_tool(tool, profiles.get(tool), apt_deps=rec.dependency_resolution.get("apt_packages") if svc.platform.is_debian_family and rec.preferred_install_method == "APT" else None,
@@ -365,7 +399,7 @@ def report(fmt: Annotated[str, typer.Option("--format", help="json | csv | markd
     tools = svc.db.load_tools()
     if not tools:
         raise fail("no data; run `blackarch2kali sync` first", EXIT_USAGE)
-    files = generate_reports(tools, svc.db.load_repos(), svc.settings.generated_dir, svc.categories_cfg)
+    files = generate_reports(tools, svc.db.load_repos(), svc.settings.generated_dir, svc.categories_cfg, svc.settings.data_dir)
     ext = {"json": {".json"}, "csv": {".csv"}, "markdown": {".md"}, "html": {".html"}, "all": None}[fmt]
     shown = [str(f) for f in files if ext is None or f.suffix in ext]
     emit(shown) if State.json else console.print("\n".join(shown), markup=False)

@@ -27,7 +27,7 @@ blackarch2kali = "blackarch2kali.cli:app"
 include = ["blackarch2kali*"]
 
 [tool.setuptools.package-data]
-blackarch2kali = ["py.typed"]
+blackarch2kali = ["py.typed", "defaults/*.yaml"]
 
 [tool.ruff]
 line-length = 110

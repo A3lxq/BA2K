@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
+
+import yaml
 
 from ..models import RepoInfo, ToolRecord, utcnow_iso
 from ..plans import generate_category_artifacts
@@ -11,7 +14,8 @@ from ..security.command_safety import safe_write_text
 from . import csv_report, html_report, json_report, markdown
 
 
-def generate_reports(tools: dict[str, ToolRecord], repos: dict[str, RepoInfo], out_dir: Path, category_cfg: dict[str, dict[str, Any]] | None = None) -> list[Path]:
+def generate_reports(tools: dict[str, ToolRecord], repos: dict[str, RepoInfo], out_dir: Path, category_cfg: dict[str, dict[str, Any]] | None = None,
+                     data_dir: Path | None = None) -> list[Path]:
     stamp = utcnow_iso()
     r = out_dir / "reports"
     files = {
@@ -33,4 +37,21 @@ def generate_reports(tools: dict[str, ToolRecord], repos: dict[str, RepoInfo], o
     written = list(files)
     if category_cfg:
         written += generate_category_artifacts(tools, category_cfg, out_dir)
+    if data_dir is not None:
+        written += export_data(tools, data_dir, stamp)
     return written
+
+
+def export_data(tools: dict[str, ToolRecord], data_dir: Path, stamp: str) -> list[Path]:
+    """Machine-readable datasets (data/). Same facts as the reports; no extra inference."""
+    ordered = sorted(tools.values(), key=lambda t: t.tool_name)
+    compat = {t.tool_name: {"kali_compatibility": t.kali_compatibility, "methods": t.installation_methods, "preferred": t.preferred_install_method, "risk": t.security_risk} for t in ordered}
+    files = {
+        data_dir / "tools.json": json_report.inventory_json(tools, stamp),
+        data_dir / "tools.yaml": yaml.safe_dump({"generated": stamp, "tools": [t.model_dump(mode="json") for t in ordered]}, sort_keys=True, allow_unicode=False),
+        data_dir / "compatibility.json": json.dumps({"generated": stamp, "tools": compat}, indent=2, sort_keys=True) + "\n",
+        data_dir / "dependency_graph.json": json_report.dependency_graph_json(tools, stamp),
+    }
+    for path, content in files.items():
+        safe_write_text(path, content)
+    return list(files)
