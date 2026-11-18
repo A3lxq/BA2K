@@ -1,0 +1,44 @@
+# Research category -> mapping rules.
+# official_groups: BlackArch package groups (authoritative, from blackarch.db %GROUPS%).
+# keywords: matched against package name/description ONLY to produce DERIVED (non-official) assignments.
+# Derived assignments are always labelled "derived" and never presented as BlackArch categories.
+categories:
+  Reconnaissance: {official_groups: [blackarch-recon, blackarch-scanner, blackarch-fingerprint]}
+  OSINT: {keywords: [osint, social media, whois, subdomain, email harvest, people search]}
+  Exploitation: {official_groups: [blackarch-exploitation]}
+  Reverse Engineering: {official_groups: [blackarch-reversing, blackarch-disassembler, blackarch-decompiler, blackarch-debugger, blackarch-unpacker]}
+  Malware Analysis: {official_groups: [blackarch-malware]}
+  Wireless: {official_groups: [blackarch-wireless]}
+  Web Application: {official_groups: [blackarch-webapp]}
+  Forensics: {official_groups: [blackarch-forensic, blackarch-anti-forensic]}
+  Sniffing and Spoofing: {official_groups: [blackarch-sniffer, blackarch-spoof]}
+  Password Auditing: {official_groups: [blackarch-cracker, blackarch-wordlist]}
+  Social Engineering: {official_groups: [blackarch-social]}
+  Vulnerability Analysis: {official_groups: [blackarch-scanner, blackarch-fuzzer, blackarch-code-audit]}
+  Hardware Hacking: {official_groups: [blackarch-hardware, blackarch-automobile, blackarch-drone]}
+  RFID/NFC: {official_groups: [blackarch-nfc], keywords: [rfid, mifare]}
+  Bluetooth: {official_groups: [blackarch-bluetooth]}
+  SDR: {official_groups: [blackarch-radio], keywords: [sdr, software defined radio]}
+  Cryptography: {official_groups: [blackarch-crypto]}
+  Mobile Security: {official_groups: [blackarch-mobile]}
+  IoT: {keywords: [iot, zigbee, mqtt, smart home]}
+  Cloud Security: {keywords: [aws, azure, gcp, cloud, s3 bucket]}
+  Active Directory: {keywords: [active directory, kerberos, ldap, bloodhound, ntlm]}
+  Windows Exploitation: {official_groups: [blackarch-windows]}
+  Linux Exploitation: {keywords: [linux privilege, privesc, suid]}
+  Container Security: {keywords: [docker, container]}
+  Kubernetes: {keywords: [kubernetes, k8s, kubectl]}
+  Phishing Analysis: {keywords: [phishing]}
+  Red Team: {official_groups: [blackarch-backdoor, blackarch-tunnel, blackarch-proxy]}
+  Blue Team: {official_groups: [blackarch-defensive, blackarch-honeypot, blackarch-ids]}
+  Threat Intelligence: {official_groups: [blackarch-threat-model], keywords: [threat intel, ioc, indicators of compromise]}
+  Binary Exploitation: {official_groups: [blackarch-binary]}
+  Steganography: {official_groups: [blackarch-stego]}
+  Automation: {official_groups: [blackarch-automation]}
+  Firmware Analysis: {official_groups: [blackarch-firmware], keywords: [firmware]}
+  Memory Forensics: {keywords: [memory forensic, volatility, memory dump]}
+  Network Analysis: {official_groups: [blackarch-networking]}
+  SIEM: {keywords: [siem, splunk, elk, log analysis]}
+  Threat Hunting: {keywords: [threat hunt, yara, sigma]}
+  Incident Response: {keywords: [incident response, dfir, triage]}
+  C2 Framework Analysis: {keywords: [c2, command and control, beacon, cobalt strike]}

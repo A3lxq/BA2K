@@ -1,0 +1,679 @@
+Package: 0trace
+Version: 0.01-3kali6
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 43
+Depends: tcpdump, libc6 (>= 2.38)
+Homepage: https://lcamtuf.coredump.cx
+Priority: optional
+Section: net
+Filename: pool/main/0/0trace/0trace_0.01-3kali6_amd64.deb
+Size: 6636
+SHA256: dd553aaa9873792470a3b4862d9d0bea42176be000b049a904edaafcb18fadca
+SHA1: 9bab3d3aa043e3889b30c0706f0943ae61024e52
+MD5sum: 6ae5db368d15bd04257299752f6e1c2d
+Description: traceroute tool that can run within an existing TCP connection
+ The package is traceroute tool that can be run within an existing, open TCP
+ connection, therefore bypassing some types of stateful packet filters with
+ ease.
+
+Package: above
+Version: 2.8.1-0kali2
+Architecture: all
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 1455
+Depends: python3-colorama, python3-scapy, python3:any
+Homepage: https://github.com/caster0x00/Above
+Priority: optional
+Section: utils
+Filename: pool/main/a/above/above_2.8.1-0kali2_all.deb
+Size: 329160
+SHA256: 4d4c77f327a53d81d7fb9c5bf8ba5bd0fa3d2f9af933c2a3ce95ae05be0fc33b
+SHA1: f8c93d63d0ef1373c8668c539cd8eb7468d30f2a
+MD5sum: 2c2dfae832c2164af33a87e64999a4b8
+Description: Network security sniffer for finding vulnerabilities in the network
+ This package contains a network security sniffer for finding vulnerabilities
+ in the network, designed for pentesters and security professionals.
+ .
+ It is based entirely on network traffic analysis, so it does not make any
+ noise on the air. Above allows pentesters to automate the process of finding
+ vulnerabilities in network hardware. Discovery protocols, dynamic routing,
+ FHRP, STP, LLMNR/NBT-NS, etc.
+ .
+ The tool can also both listen to traffic on the interface and analyze already
+ existing pcap files.
+
+Package: ace
+Source: golang-github-yosssi-ace (0.0.5-3.1)
+Version: 0.0.5-3.1+b25
+Installed-Size: 2745
+Maintainer: Debian Go Packaging Team <pkg-go-maintainers@lists.alioth.debian.org>
+Architecture: amd64
+Suggests: golang-github-yosssi-ace-dev
+Conflicts: libace-perl
+Size: 935820
+SHA256: fce1e9d32d3a65437b95a1d39ec0949be895231c98af19d4934ea9f6bbad420f
+SHA1: 7d1e4ddbcfe06ca4ead9cb1469b8cd65f2863cc0
+MD5sum: a905474122b96224cf33203d7de21902
+Description: HTML template engine for Go (command-line tool)
+ Ace is an HTML template engine for Go.  This is inspired by
+ Slim (http://slim-lang.com/) and Jade (http://jade-lang.com/).
+ This is a refinement of Gold (http://gold.yoss.si/).
+ .
+ Example:
+ .
+   = doctype html
+   html lang=en
+   head
+     title Hello Ace
+     = css
+       h1 { color: blue; }
+   body
+     h1 {{.Msg}}
+     #container.wrapper
+       p..
+         Ace is an HTML template engine for Go.
+         This engine simplifies HTML coding in Go web application development.
+     = javascript
+       console.log('Welcome to Ace');
+ .
+ This package provides the /usr/bin/ace command-line tool and example files.
+Homepage: https://github.com/yosssi/ace
+Built-Using: golang-1.26 (= 1.26.2-1), golang-github-yosssi-gohtml (= 0.0~git20180130.97fbf36-2), golang-golang-x-net (= 1:0.53.0-1)
+Section: text
+Priority: optional
+Filename: pool/main/g/golang-github-yosssi-ace/ace_0.0.5-3.1+b25_amd64.deb
+
+Package: airgeddon
+Version: 12.02-0kali1
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 5537
+Depends: aircrack-ng, bash (>= 4.2), gawk, iproute2, iw, pciutils, procps, tmux, xterm
+Recommends: arping, asleap, beef-xss, bettercap, bully, ccze, crunch, dnsmasq, ethtool, ettercap-text-only, hashcat, hcxdumptool, hcxtools, hostapd, hostapd-mana, hostapd-wpe, iptables, john, kea-dhcp4-server, lighttpd, mdk3, mdk4, nftables, openssl, pixiewps, reaver, rfkill, sox, systemd, tcpdump, tshark, usbutils, x11-utils, x11-xserver-utils
+Homepage: https://github.com/v1s1t0r1sh3r3/airgeddon
+Priority: optional
+Section: net
+Filename: pool/main/a/airgeddon/airgeddon_12.02-0kali1_amd64.deb
+Size: 3095996
+SHA256: 44a50da0a46cbe9c56f469afe7c57f4fc56bb0e88089ad20a7e5fedff48cec90
+SHA1: 736b039c26dac6ba2b2d6b18a97648c2576fe42f
+MD5sum: 22a673c7702125cb7a0d5654e441c85a
+Description: multi-use bash script for Linux systems to audit wireless networks
+ airgeddon is a menu driven 3rd party tools wrapper to audit wireless networks
+ with many features.
+
+Package: altdns
+Version: 1.0.2+git20250109.6728272-1
+Installed-Size: 46
+Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Architecture: all
+Depends: python3:any, python3-configargparse, python3-dnspython, python3-termcolor, python3-tldextract
+Size: 8616
+SHA256: 6e68cd6ab8b2fb0d213cda0eb8cd718362276ec79e6c6c6d18197b428091e868
+SHA1: 8adb54c86855a69ffc69017466f3e9d2aa7a395a
+MD5sum: 8c62107db2b4ce485fb395b1732e4650
+Description: Subdomain discovery through alterations and permutations
+ This package contains a DNS recon tool that allows for the discovery of
+ subdomains that conform to patterns. Altdns takes in words that could be
+ present in subdomains under a domain (such as test, dev, staging) as well
+ as takes in a list of subdomains that you know of.
+ .
+ From these two lists that are provided as input to altdns, the tool then
+ generates a massive output of "altered" or "mutated" potential subdomains
+ that could be present. It saves this output so that it can then be used by
+ your favourite DNS bruteforcing tool.
+Homepage: https://github.com/infosec-au/altdns
+Section: net
+Priority: optional
+Filename: pool/main/a/altdns/altdns_1.0.2+git20250109.6728272-1_all.deb
+
+Package: amap
+Version: 5.4-4kali6
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 282
+Depends: libc6 (>= 2.38), libssl3t64 (>= 3.0.0)
+Homepage: https://www.thc.org
+Priority: optional
+Section: net
+Filename: pool/main/a/amap/amap_5.4-4kali6_amd64.deb
+Size: 71440
+SHA256: da8f62601bad0dcd7925190c3b9970aaac7a085c5238ca8f6252ad79b1c2aa0a
+SHA1: da67ffd42f4b3ce7146c497c73e823d3f428f8cf
+MD5sum: 05f954e12ca0f1e151e5707d4fb20b5c
+Description: next-generation scanning tool for pentesters
+ AMAP stands for Application MAPper. It is a next-generation scanning
+ tool for pentesters. It attempts to identify applications even if they
+ are running on a different port than normal.
+ .
+ It also identifies non-ascii based applications. This is achieved by
+ sending trigger packets, and looking up the responses in a list of
+ response strings.
+
+Package: amass
+Version: 5.1.3-0kali1
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 51181
+Depends: libpostal-data, sudo, libc6 (>= 2.34)
+Suggests: postgresql
+Homepage: https://github.com/OWASP/Amass
+Priority: optional
+Section: net
+Filename: pool/main/a/amass/amass_5.1.3-0kali1_amd64.deb
+Size: 12381072
+SHA256: 539b289cb2c8e429c17c0e183e5ae86f2293a1e92d25aa67065d488f4fb15243
+SHA1: 8f18533a391811e5d6bc89e1a8bd9f340bbe3eaf
+MD5sum: 3b5d584346249132895cfe1e5051b391
+Description: In-depth DNS Enumeration and Network Mapping
+ This package contains a tool to help information security professionals
+ perform network mapping of attack surfaces and perform external asset
+ discovery using open source information gathering and active reconnaissance
+ techniques.
+ .
+ Information Gathering Techniques Used:
+    - DNS: Basic enumeration, Brute forcing (upon request), Reverse DNS
+      sweeping, Subdomain name alterations/permutations, Zone transfers (upon
+      request)
+    - Scraping: Ask, Baidu, Bing, DNSDumpster, DNSTable, Dogpile, Exalead,
+      Google, HackerOne, IPv4Info, Netcraft, PTRArchive, Riddler, SiteDossier,
+      ViewDNS, Yahoo
+    - Certificates: Active pulls (upon request), Censys, CertSpotter, Crtsh,
+      Entrust, GoogleCT
+    - APIs: AlienVault, BinaryEdge, BufferOver, CIRCL, CommonCrawl, DNSDB,
+      HackerTarget, Mnemonic, NetworksDB, PassiveTotal, RADb, Robtex,
+      SecurityTrails, ShadowServer, Shodan, Spyse (CertDB & FindSubdomains),
+      Sublist3rAPI, TeamCymru, ThreatCrowd, Twitter, Umbrella, URLScan,
+      VirusTotal
+    - Web Archives: ArchiveIt, ArchiveToday, Arquivo, LoCArchive,
+      OpenUKArchive, UKGovArchive, Wayback
+ .
+ This package contains the command amass.
+
+Package: androguard
+Version: 4.1.4-1
+Installed-Size: 8188
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Architecture: all
+Depends: python3-apkinspector, python3-asn1crypto, python3-click, python3-colorama, python3-cryptography (>= 46.0.6), python3-dataset, python3-ipython, python3-loguru, python3-lxml, python3-mutf8, python3-networkx, python3-pydot, python3-pygments, python3-yaml, python3:any
+Size: 333120
+SHA256: 27ed56770fccf0029c23fffd5cc9949b481e84c70770627d3232e1e1da13d49d
+SHA1: 027a4679008c4f8786d14c3a1c56f5a652fef994
+MD5sum: b33bcf557f0469ee4ab0ddc1dfe72e51
+Description: full Python tool to play with Android files
+ Androguard is a full Python tool to play with Android files.
+ .
+  * DEX, ODEX
+  * APK
+  * Android's binary xml
+  * Android resources
+  * Disassemble DEX/ODEX bytecodes
+  * Decompiler for DEX/ODEX files
+Homepage: https://github.com/androguard/androguard
+Section: python
+Priority: optional
+Filename: pool/main/a/androguard/androguard_4.1.4-1_all.deb
+
+Package: arjun
+Version: 2.2.7-1
+Installed-Size: 348
+Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Architecture: all
+Depends: python3-dicttoxml, python3-ratelimit, python3-requests, python3:any
+Size: 82508
+SHA256: 758e88b21acf776ef2cf7ab26e7a8b849dbd0925c6e5891a7ca618b11a64fa03
+SHA1: 4dc074842a147dabec381b6f113557674dd67ac8
+MD5sum: 7a68aa3f1079da0812fdac129c33d39a
+Description: HTTP parameter discovery suite
+ This package can find query parameters for URL endpoints.
+ .
+ Web applications use parameters (or queries) to accept user input, take the
+ following example into consideration.
+ .
+    http://api.example.com/v1/userinfo?id=751634589
+ .
+ This URL seems to load user information for a specific user id, but what if
+ there exists a parameter named admin which when set to True makes the endpoint
+ provide more information about the user?
+ This is what Arjun does, it finds valid HTTP parameters with a huge default
+ dictionary of 25,890 parameter names.
+ It takes less than 10 seconds to go through this huge list while making just
+ 50-60 requests to the target.
+ .
+ Some features:
+   - Supports GET/POST/POST-JSON/POST-XML requests;
+   - Automatically handles rate limits and timeouts;
+   - Export results to: BurpSuite, text or JSON file;
+   - Import targets from: BurpSuite, text file or a raw request file;
+   - Can passively extract parameters from JS or 3 external sources.
+ .
+ Arjun is useful for penetration testing (PENTEST) and network security
+ analysis, serving as OSINT.
+Homepage: https://github.com/s0md3v/Arjun
+Section: misc
+Priority: optional
+Filename: pool/main/a/arjun/arjun_2.2.7-1_all.deb
+
+Package: asleap
+Version: 2.5-1
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 83
+Depends: libc6 (>= 2.38), libpcap0.8t64 (>= 0.9.8), libssl3t64 (>= 3.0.0)
+Homepage: https://www.willhackforsushi.com/
+Priority: optional
+Section: net
+Filename: pool/main/a/asleap/asleap_2.5-1_amd64.deb
+Size: 28480
+SHA256: 719f8d4040d56e23243562ca9f90e7aa460f155b5cc099bf3b53d11c589060b6
+SHA1: f7e4ec89d500cf097acd40172973c2458b2cbc9b
+MD5sum: fa438d0c842b546b0c94a8a65a48e652
+Description: A tool for exploiting Cisco LEAP networks
+ Demonstrates a serious deficiency in proprietary Cisco LEAP networks.
+
+Package: assetfinder
+Source: assetfinder (0.1.1-1)
+Version: 0.1.1-1+b12
+Installed-Size: 6108
+Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
+Architecture: amd64
+Depends: libc6 (>= 2.34)
+Size: 2070004
+SHA256: 508f9aa962edc1312fd81620bf0a2bfe09038fb3e17804aaf331dbe44c8f0252
+SHA1: a8c5a8cd9b51a47cf3b8cc14e85e566942371fd4
+MD5sum: 46e76f51bb2903bedec5695d3cb8ede2
+Description: Find domains and subdomains related to a given domain
+ assetfinder is a command-line tool designed to find domains and
+ subdomains associated with a specific domain.
+ .
+ The main objective of the tool is to help security researchers and IT
+ professionals discover and understand how the domains and sub-domains
+ of a given organization are distributed, trying to find possible
+ security flaws and vulnerabilities.
+ .
+ assetfinder uses multiple data sources to perform its research, including:
+  - crt.sh
+  - certspotter
+  - hackertarget
+  - threatcrowd
+  - Wayback Machine
+  - dns.bufferover.run
+  - Facebook Graph API
+  - Virustotal
+  - findsubdomains
+ This expands coverage and increases the accuracy of results.
+Homepage: https://github.com/tomnomnom/assetfinder
+Built-Using: golang-1.26 (= 1.26.2-1)
+Section: golang
+Priority: optional
+Filename: pool/main/a/assetfinder/assetfinder_0.1.1-1+b12_amd64.deb
+
+Package: autopsy
+Version: 2.24-6kali1
+Architecture: all
+Maintainer: Debian QA Group <packages@qa.debian.org>
+Installed-Size: 1026
+Depends: binutils, perl, sleuthkit
+Homepage: https://www.sleuthkit.org/autopsy/
+Priority: optional
+Section: admin
+Filename: pool/main/a/autopsy/autopsy_2.24-6kali1_all.deb
+Size: 335120
+SHA256: 3a48340311f805f15a39a84b903f5a2cf98bedf017c29b52ba8862b3670a5e4a
+SHA1: aed63ecdefd3144c4e78d5e361afcf98a420ce85
+MD5sum: 0031fcebbe7435d651888ff550c5d2f4
+Description: graphical interface to SleuthKit
+ The Autopsy Forensic Browser is a graphical interface to the command line
+ digital forensic analysis tools in The Sleuth Kit. Together, The Sleuth Kit
+ and Autopsy provide many of the same features as commercial digital forensics
+ tools for the analysis of Windows and UNIX file systems (NTFS, FAT, FFS,
+ EXT2FS, and EXT3FS).
+
+Package: bash
+Source: bash (5.3-4)
+Version: 5.3-4+b1
+Essential: yes
+Installed-Size: 7309
+Maintainer: Matthias Klose <doko@debian.org>
+Architecture: amd64
+Depends: base-files (>= 2.1.12), debianutils (>= 5.6-0.1)
+Pre-Depends: libc6 (>= 2.38), libtinfo6 (>= 6)
+Recommends: bash-completion
+Suggests: bash-doc
+Size: 1581364
+SHA256: bb61e2fdccf5dfb4955e21dc670172e858eebe4659bb9073e3020dbf74fb165e
+SHA1: b94fa801acc4d7511107ce4bad6fa90f766fbe71
+MD5sum: 6c2624a2c92df7f3e3b68406c09a1551
+Description: GNU Bourne Again SHell
+ Bash is an sh-compatible command language interpreter that executes
+ commands read from the standard input or from a file.  Bash also
+ incorporates useful features from the Korn and C shells (ksh and csh).
+ .
+ Bash is ultimately intended to be a conformant implementation of the
+ IEEE POSIX Shell and Tools specification (IEEE Working Group 1003.2).
+ .
+ The Programmable Completion Code, by Ian Macdonald, is now found in
+ the bash-completion package.
+Multi-Arch: foreign
+Homepage: http://tiswww.case.edu/php/chet/bash/bashtop.html
+Tag: admin::TODO, devel::TODO, devel::interpreter, implemented-in::c,
+ interface::shell, interface::text-mode, role::program,
+ scope::application, suite::gnu, uitoolkit::ncurses
+Section: shells
+Priority: required
+Filename: pool/main/b/bash/bash_5.3-4+b1_amd64.deb
+
+Package: beef
+Version: 1.2.0-3
+Installed-Size: 39
+Maintainer: Andrea Bolognani <eof@kiyuko.org>
+Architecture: amd64
+Depends: libc6 (>= 2.34), libcattle-1.0-0 (>= 1.2.0), libglib2.0-0t64 (>= 2.16.0), libreadline8t64 (>= 6.0)
+Suggests: gvfs, gvfs-backends
+Size: 11436
+SHA256: c6d58c82bdf2dfbba3f85eb6afc003739c7058262549b55b7baab52d8f951a66
+SHA1: 476c04c3e2fc9e757e27ed86d445528d97bacfa5
+MD5sum: e370f2a683945818a2e665bd6fc4b0bf
+Description: flexible Brainfuck interpreter
+ Beef is an interpreter for the Brainfuck programming language.
+ .
+ Its main goals are to be comfortable for the user and to run most
+ Brainfuck programs unchanged; speed is generally quite good.
+ .
+ Beef performs thorough error checking to make sure malformed programs are
+ not executed; it also supports a bunch of command-line options that can be
+ used for configuration or compatibility purposes.
+ .
+ If GVFS is installed, Beef can use any available backend as either output
+ or (where it makes sense) input source. GNU readline is used for
+ interactive input.
+Homepage: https://kiyuko.org/software/beef
+Tag: devel::interpreter, implemented-in::c, interface::commandline,
+ role::program, works-with::software:source
+Section: devel
+Priority: optional
+Filename: pool/main/b/beef/beef_1.2.0-3_amd64.deb
+
+Package: bloodhound
+Version: 9.8.0~rc3-0kali1
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 316981
+Depends: neo4j, postgresql, curl, kali-defaults (>= 2026.2.5)
+Recommends: sharphound, azurehound
+Homepage: https://github.com/SpecterOps/BloodHound
+Priority: optional
+Section: misc
+Filename: pool/main/b/bloodhound/bloodhound_9.8.0~rc3-0kali1_amd64.deb
+Size: 117673764
+SHA256: 9adfc1927a5e75442beb8c5a442bc17f8a3edaadd9b1f77606ba94a812f95f63
+SHA1: 3c9ba0be272f8fe9576f68aef0a688c7a9ac3abb
+MD5sum: 82c3542d1fd78183ad1e1839231d7276
+Description: Six Degrees of Domain Admin, BloodHound CE
+ This package contains BloodHound Community Edition, a single page Javascript
+ web application.
+ .
+ BloodHound uses graph theory to reveal the hidden and often unintended
+ relationships within an Active Directory environment. Attackers can use
+ BloodHound to easily identify highly complex attack paths that would otherwise
+ be impossible to quickly identify. Defenders can use BloodHound to identify
+ and eliminate those same attack paths. Both blue and red teams can use
+ BloodHound to easily gain a deeper understanding of privilege relationships in
+ an Active Directory environment.
+
+Package: docker.io
+Version: 28.5.2+dfsg4-5
+Installed-Size: 80705
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Architecture: amd64
+Depends: debconf (>= 0.5) | debconf-2.0, systemd | systemd-standalone-sysusers | systemd-sysusers, libc6 (>= 2.34), libsystemd0, containerd (>= 1.4~), iptables, sysvinit-utils (>= 3.05-4~), runc (>= 1.0.0~rc8~), tini-static
+Recommends: apparmor, ca-certificates, dbus-user-session, docker-cli, git, needrestart (>= 3.1~), xz-utils
+Suggests: docker-doc, btrfs-progs, debootstrap, e2fsprogs, rinse, rootlesskit, xfsprogs, zfs-fuse | zfsutils-linux
+Conflicts: docker-ce, docker-ce-rootless-extras
+Size: 19311940
+SHA256: 69a59cc77a1fb8ee9ad6859abc2e6de5d76b70887405595c2b1307818fecf682
+SHA1: 6b96320c995cb6ec636e3ddd0449ed34dc78dd11
+MD5sum: 239cd61b88fc4c69355eb9fe05bd743c
+Description: Linux container runtime
+ Docker complements kernel namespacing with a high-level API which operates at
+ the process level. It runs unix processes with strong guarantees of isolation
+ and repeatability across servers.
+ .
+ Docker is a great building block for automating distributed systems:
+ large-scale web deployments, database clusters, continuous deployment systems,
+ private PaaS, service-oriented architectures, etc.
+ .
+ This package contains the daemon only. For the command-line utility
+ "/usr/bin/docker", please install the "docker-cli" package.
+ .
+ WARNING: Installation starts the daemon immediately and adds iptables rules
+ for container networking. These may disrupt existing firewall setups or VM
+ networking, potentially breaking connectivity. Test on non-critical systems
+ first. To disable: set DOCKER_OPTS="--iptables=false" in /etc/default/docker
+ before install. Also, the default configuration will create a "docker0" bridge
+ interface for container networking. To configure this behavior, please check
+ the documentation on the "--bip" and "-b" command-line arguments in
+ dockerd(8).
+Homepage: https://mobyproject.org
+Static-Built-Using: containerd (= 2.1.9+ds1-2), continuity (= 0.4.5~ds1-1), docker-registry (= 2.8.3+ds1-3), etcd (= 3.5.30-2), go-md2man-v2 (= 2.0.7-1), golang-1.27 (= 1.27.1-2), golang-blackfriday-v2 (= 2.1.0-1), golang-dbus (= 5.1.0-1), golang-fsnotify (= 1.10.1-1), golang-github-agext-levenshtein (= 1.2.3-2), golang-github-anchore-go-struct-converter (= 0.0~git20240925.a088364-2), golang-github-appc-cni (= 1.3.0-2), golang-github-armon-circbuf (= 0.0~git20190214.5111143-1), golang-github-armon-go-metrics (= 0.4.1-2), golang-github-aws-aws-sdk-go-v2 (= 1.41.7-2), golang-github-aws-smithy-go (= 1.25.1-3), golang-github-azure-azure-sdk-for-go (= 68.0.0+git20231220.f497335+dfsg1-6), golang-github-azure-go-ansiterm (= 0.0~git20210617.d185dfc-2), golang-github-azuread-microsoft-authentication-library-for-go (= 1.0.0-3), golang-github-beorn7-perks (= 1.0.1-3), golang-github-bits-and-blooms-bitset (= 1.24.5-1), golang-github-cenkalti-backoff (= 5.0.3-3), golang-github-cespare-xxhash (= 2.3.0-2), golang-github-cilium-ebpf (= 0.22.0+ds1-1), golang-github-cli-browser (= 1.3.0-1), golang-github-clipperhouse-uax29 (= 2.7.0-4), golang-github-cloudflare-cfssl (= 1.6.5-2), golang-github-containerd-accelerated-container-image (= 1.4.3-2), golang-github-containerd-cgroups (= 3.0.5-5), golang-github-containerd-console (= 1.0.5-1), golang-github-containerd-errdefs (= 0.3.0-4), golang-github-containerd-fifo (= 1.1.0-1), golang-github-containerd-go-cni (= 1.1.13-1), golang-github-containerd-go-runc (= 1.1.0-2), golang-github-containerd-log (= 0.1.0-2), golang-github-containerd-platforms (= 1.0.0~rc4-2), golang-github-containerd-plugin (= 1.0.0-1), golang-github-containerd-typeurl (= 2.2.3-1), golang-github-coreos-bbolt (= 1.4.3-1), golang-github-coreos-go-systemd (= 22.6.0-1), golang-github-cyphar-filepath-securejoin (= 0.5.2-2), golang-github-davecgh-go-spew (= 1.1.1-7), golang-github-deckarep-golang-set (= 2.9.0-1), golang-github-dimchansky-utfbom (= 1.1.1-1), golang-github-distribution-reference (= 0.6.0-4), golang-github-docker-cli-docs-tool (= 0.11.0-2), golang-github-docker-docker-credential-helpers (= 0.9.6+ds1-2), golang-github-docker-go (= 1.5.2~git20160303.d30aec9-1), golang-github-docker-go-connections (= 0.4.0-4), golang-github-docker-go-events (= 0.0~git20190806.e31b211-4), golang-github-docker-go-metrics (= 0.0.1-2), golang-github-docker-go-units (= 0.5.0-1), golang-github-docker-libtrust (= 0.0~git20160708.aabc10e-1), golang-github-dustin-go-humanize (= 1.0.1-1), golang-github-felixge-fgprof (= 0.9.5-1), golang-github-felixge-httpsnoop (= 1.0.3-3), golang-github-fernet-fernet-go (= 0.0~git20180830.9eac43b-2), golang-github-fluent-fluent-logger-golang (= 1.10.1-1), golang-github-fvbommel-sortorder (= 1.0.2-3), golang-github-go-jose-go-jose (= 4.1.4-2), golang-github-go-logr-logr (= 1.4.4-1), golang-github-go-logr-stdr (= 1.2.2-4), golang-github-go-viper-mapstructure (= 2.5.0-2), golang-github-gofrs-flock (= 0.8.1-1), golang-github-golang-groupcache (= 0.0~git20210331.41bb18b-2), golang-github-golang-jwt-jwt (= 5.0.0+really4.5.2-1), golang-github-golang-jwt-jwt-v5 (= 5.3.1-1), golang-github-golang-protobuf-1-5 (= 1.5.4-2), golang-github-google-btree (= 1.0.1-1), golang-github-google-certificate-transparency (= 1.3.3-1), golang-github-google-go-cmp (= 0.7.0-1), golang-github-google-pprof (= 0.0~git20260202.cb029da-2), golang-github-google-shlex (= 0.0~git20191202.e7afc7f-1), golang-github-google-uuid (= 1.6.0-1), golang-github-gorilla-mux (= 1.8.1-1), golang-github-graylog2-go-gelf (= 0.0+git20191017.1550ee6-1), golang-github-grpc-ecosystem-go-grpc-prometheus (= 1.2.0+git20191002.6af20e3-5), golang-github-grpc-ecosystem-grpc-gateway (= 2.30.0-1), golang-github-hanwen-go-fuse (= 2.8.0-1), golang-github-hashicorp-errwrap (= 1.1.0-1), golang-github-hashicorp-go-cleanhttp (= 0.5.2-1), golang-github-hashicorp-go-immutable-radix (= 1.3.1-3), golang-github-hashicorp-go-immutable-radix-v2 (= 2.1.0-1), golang-github-hashicorp-go-memdb (= 1.2.1-1), golang-github-hashicorp-go-msgpack (= 0.5.5-1), golang-github-hashicorp-go-multierror (= 1.1.1-2), golang-github-hashicorp-go-retryablehttp (= 0.7.1-1), golang-github-hashicorp-go-sockaddr (= 1.0.2-3), golang-github-hashicorp-golang-lru (= 0.5.4-2), golang-github-hashicorp-golang-lru-v2 (= 2.0.7-3), golang-github-hashicorp-memberlist (= 0.5.0-1), golang-github-hashicorp-serf (= 0.10.1-1), golang-github-imdario-mergo (= 1.0.1-2), golang-github-in-toto-attestation (= 1.2.0-1), golang-github-ishidawataru-sctp (= 0.0+git20210707.9a39160-1), golang-github-jmoiron-sqlx (= 1.3.5-1), golang-github-klauspost-compress (= 1.20.0+ds1-1), golang-github-kylelemons-godebug (= 1.1.0-2), golang-github-mattn-go-runewidth (= 0.0.27-1), golang-github-miekg-dns (= 1.1.73-1), golang-github-mitchellh-hashstructure (= 2.0.2-2), golang-github-moby-docker-image-spec (= 1.3.1-2), golang-github-moby-go-archive (= 0.3.3-1), golang-github-moby-locker (= 1.0.1-3), golang-github-moby-patternmatcher (= 0.6.0-1), golang-github-moby-pubsub (= 1.0.0-2), golang-github-moby-sys (= 0.0~git20260904.79376e0-1), golang-github-moby-term (= 0.0~git20230502.9c3c875-1), golang-github-morikuni-aec (= 1.0.0-3), golang-github-munnerz-goautoneg (= 0.0~git20191010.a7dc8b6-2), golang-github-opencontainers-go-digest (= 1.0.0-2), golang-github-opencontainers-image-spec (= 1.1.1-2), golang-github-opencontainers-runtime-tools (= 0.9.0.109.ge931285-1), golang-github-opencontainers-selinux (= 1.15.1-1), golang-github-opencontainers-specs (= 1.2.1-2), golang-github-package-url-packageurl-go (= 0.1.7+ds1-2), golang-github-pelletier-go-toml (= 1.9.5-1), golang-github-pelletier-go-toml.v2 (= 2.4.3-2), golang-github-philhofer-fwd (= 1.2.0-1), golang-github-pkg-browser (= 0.0~git20240102.5ac0b6a-1), golang-github-pkg-errors (= 0.9.1-3), golang-github-pkg-profile (= 1.7.0-1), golang-github-planetscale-vtprotobuf (= 0.6.0-3), golang-github-pmezard-go-difflib (= 1.0.0-4), golang-github-prometheus-client-golang (= 1.23.2-3), golang-github-prometheus-client-model (= 0.6.2-2), golang-github-prometheus-common (= 0.69.0-1), golang-github-prometheus-otlptranslator (= 1.0.0-2), golang-github-prometheus-procfs (= 0.21.1-1), golang-github-racksec-srslog (= 0.0~git20180709.a4725f0-2), golang-github-secure-systems-lab-go-securesystemslib (= 0.11.0-1), golang-github-shibumi-go-pathspec (= 1.3.0-2), golang-github-spdx-tools-golang (= 0.5.5-2), golang-github-spf13-cobra (= 1.10.2-1), golang-github-spf13-pflag (= 1.0.10-1), golang-github-tinylib-msgp (= 1.6.4-1), golang-github-tonistiigi-dchapes-mode (= 0.0~git20250318.73d941a-1), golang-github-tonistiigi-units (= 0.0~git20180711.6950e57-2), golang-github-tonistiigi-vt100 (= 0.0~git20240514.90bafcd-2), golang-github-urfave-cli (= 1.22.17-2), golang-github-vbatts-tar-split (= 0.12.3-1), golang-github-vishvananda-netlink (= 1.3.1-1), golang-github-vishvananda-netns (= 0.0.5-1), golang-github-weppos-publicsuffix-go (= 0.30.1-1), golang-github-xeipuuv-gojsonpointer (= 0.0~git20190905.02993c4-3), golang-github-xeipuuv-gojsonreference (= 0.0~git20180127.bd5ef7b-4), golang-github-xeipuuv-gojsonschema (= 1.2.0-3), golang-github-zmap-zcrypto (= 0.0~git20240512.0fef58d-2), golang-github-zmap-zlint (= 3.6.2-5), golang-go.crypto (= 1:0.56.0-1), golang-go.uber-multierr (= 1.11.0-1), golang-go.uber-zap (= 1.27.0-2), golang-gocapability-dev (= 0.0+git20200815.42c35b4-2), golang-gogoprotobuf (= 1.3.2-3), golang-gogottrpc (= 1.2.7-1), golang-golang-x-exp (= 0.0~git20260820.ca53665-1), golang-golang-x-mod (= 0.40.0-1), golang-golang-x-net (= 1:0.58.0-1), golang-golang-x-sync (= 0.22.0-1), golang-golang-x-sys (= 0.47.0+dfsg-1), golang-golang-x-term (= 0.45.0-1), golang-golang-x-text (= 0.41.0-1), golang-golang-x-time (= 0.15.0-1), golang-google-genproto (= 0.0~git20260414.afd174a-2), golang-google-grpc (= 1.81.1-1), golang-google-protobuf (= 1.36.10-2), golang-gopkg-yaml.v3 (= 3.0.5-1), golang-k8s-sigs-yaml (= 1.6.0-1), golang-logrus (= 1.9.3-2), golang-mongodb-mongo-driver (= 1.17.9+ds1-1), golang-opentelemetry-contrib (= 1.43.0-1), golang-opentelemetry-otel (= 1.43.0-4), golang-opentelemetry-proto (= 1.10.0-1), golang-tags.cncf-container-device-interface (= 1.0.1-2), golang-testify (= 1.11.1-2), golang-yaml.v2 (= 2.4.4-1), gotest.tools (= 3.5.1-2), in-toto-golang (= 0.11.0+ds-1), rootlesskit (= 2.0.2-2)
+Section: admin
+Priority: optional
+Filename: pool/main/d/docker.io/docker.io_28.5.2+dfsg4-5_amd64.deb
+
+Package: git
+Version: 1:2.53.0-1
+Installed-Size: 50972
+Maintainer: Jonathan Nieder <jrnieder@gmail.com>
+Architecture: amd64
+Provides: git-completion, git-core
+Depends: libc6 (>= 2.42), libcurl3t64-gnutls (>= 8.3.0), libexpat1 (>= 2.0.1), libpcre2-8-0 (>= 10.34), zlib1g (>= 1:1.2.2), perl, liberror-perl, git-man (>> 1:2.53.0), git-man (<< 1:2.53.0-.)
+Recommends: ca-certificates, patch, less, ssh-client
+Suggests: gettext-base, git-doc, git-email, git-gui, gitk, gitweb, git-cvs, git-svn
+Breaks: bash-completion (<< 1:1.90-1), cogito (<= 0.18.2+), dgit (<< 5.1~), git-buildpackage (<< 0.6.5), git-el (<< 1:2.32.0~rc2-1~), gitosis (<< 0.2+20090917-7), gitpkg (<< 0.15), guilt (<< 0.33), openssh-client (<< 1:6.8), stgit (<< 0.15), stgit-contrib (<< 0.15)
+Size: 9409868
+SHA256: 54828afcd38dd8403b910259d8f47ff7c86908e40a2be8ec3339993dd02926dc
+SHA1: 8e92558490b401eab8ff6893f3c69d9ce9146c09
+MD5sum: 1e519d5487f0036a319d880d914f257c
+Description: fast, scalable, distributed revision control system
+ Git is popular version control system designed to handle very large
+ projects with speed and efficiency; it is used for many high profile
+ open source projects, most notably the Linux kernel.
+ .
+ Git falls in the category of distributed source code management tools.
+ Every Git working directory is a full-fledged repository with full
+ revision tracking capabilities, not dependent on network access or a
+ central server.
+ .
+ This package provides the git main components with minimal dependencies.
+ Additional functionality, e.g. a graphical user interface and revision
+ tree visualizer, tools for interoperating with other VCS's, or a web
+ interface, is provided as separate git* packages.
+Multi-Arch: foreign
+Homepage: https://git-scm.com/
+Tag: devel::lang:perl, devel::library, devel::rcs, implemented-in::c,
+ implemented-in::perl, implemented-in::shell, interface::text-mode,
+ network::client, network::server, protocol::ssh, protocol::tcp,
+ role::devel-lib, role::program, works-with::file,
+ works-with::software:source, works-with::vcs
+Section: vcs
+Priority: optional
+Filename: pool/main/g/git/git_2.53.0-1_amd64.deb
+
+Package: golang-go
+Source: golang-defaults
+Version: 2:1.27~1
+Installed-Size: 63
+Maintainer: Debian Go Compiler Team <team+go-compiler@tracker.debian.org>
+Architecture: amd64
+Replaces: golang-go-darwin-386, golang-go-darwin-amd64, golang-go-freebsd-386, golang-go-freebsd-amd64, golang-go-freebsd-arm, golang-go-linux-386, golang-go-linux-amd64, golang-go-linux-arm, golang-go-netbsd-386, golang-go-netbsd-amd64, golang-go-windows-386, golang-go-windows-amd64
+Depends: golang-1.27-go, golang-src (>= 2:1.27~1)
+Suggests: git
+Conflicts: gccgo-go
+Breaks: gccgo-5 (<< 5.3.1-12~), gccgo-6 (<< 6-20160319-1~), golang-go-darwin-386, golang-go-darwin-amd64, golang-go-freebsd-386, golang-go-freebsd-amd64, golang-go-freebsd-arm, golang-go-linux-386, golang-go-linux-amd64, golang-go-linux-arm, golang-go-netbsd-386, golang-go-netbsd-amd64, golang-go-windows-386, golang-go-windows-amd64
+Size: 40176
+SHA256: 4f91569a479873f0c2d0e31f132c0583d94bda51b317aeb6dbc4a51b2cccc00b
+SHA1: d6ddaa13b812818a948e89ebfd040a8cbe7c285d
+MD5sum: be36571692bb20c033319f3c6ad854bd
+Description: Go programming language compiler, linker, compiled stdlib
+ The Go programming language is an open source project to make programmers more
+ productive. Go is expressive, concise, clean, and efficient. Its concurrency
+ mechanisms make it easy to write programs that get the most out of multicore
+ and networked machines, while its novel type system enables flexible and
+ modular program construction. Go compiles quickly to machine code yet has the
+ convenience of garbage collection and the power of run-time reflection. It's a
+ fast, statically typed, compiled language that feels like a dynamically typed,
+ interpreted language.
+ .
+ This is a dependency package that depends on the default Go toolchain and
+ compiled standard library. It is only built on architectures that have a
+ native toolchain ("gc compiler").
+Multi-Arch: same
+Homepage: https://go.dev
+Tag: devel::TODO, devel::buildtools, devel::compiler, role::program
+Section: golang
+Priority: optional
+Filename: pool/main/g/golang-defaults/golang-go_1.27~1_amd64.deb
+
+Package: libxslt1.1
+Source: libxslt
+Version: 1.1.45-0.1
+Installed-Size: 409
+Maintainer: Debian XML/SGML Group <debian-xml-sgml-pkgs@lists.alioth.debian.org>
+Architecture: amd64
+Depends: libc6 (>= 2.38), libgcrypt20 (>= 1.12.0), libxml2-16 (>= 2.14.1)
+Size: 157592
+SHA256: 6975d3b8504b42cf216e0f766b2512e13edb7762c475733a2f46ba2bea786765
+SHA1: 35400fb9b2d2ee6f7de9119dface7cb5aae50814
+MD5sum: 04ea33eb39ba544d3c9eec3915f6162e
+Description: XSLT 1.0 processing library - runtime library
+ XSLT is an XML language for defining transformations of XML files from
+ XML to some other arbitrary format, such as XML, HTML, plain text, etc.
+ using standard XSLT stylesheets. libxslt is a C library which
+ implements XSLT version 1.0.
+ .
+ This package contains the libxslt library used by applications for XSLT
+ transformations.
+Multi-Arch: same
+Homepage: https://gitlab.gnome.org/GNOME/libxslt/-/wikis/home
+Tag: role::shared-lib
+Section: libs
+Priority: optional
+Filename: pool/main/libx/libxslt/libxslt1.1_1.1.45-0.1_amd64.deb
+
+Package: nmap
+Version: 7.991+dfsg-1kali1
+Architecture: amd64
+Maintainer: Kali Developers <devel@kali.org>
+Installed-Size: 4990
+Depends: nmap-common (= 7.991+dfsg-1kali1), libc6 (>= 2.38), libgcc-s1 (>= 3.0), liblinear4 (>= 2.01+dfsg), liblua5.4-0 (>= 5.4.6), libpcap0.8t64 (>= 1.5.1), libpcre2-8-0 (>= 10.47), libssh2-1t64 (>= 1.11.0), libssl3t64 (>= 3.0.0), libstdc++6 (>= 13), zlib1g (>= 1:1.1.4)
+Suggests: ncat, ndiff, zenmap
+Homepage: https://nmap.org/
+Priority: optional
+Section: net
+Filename: pool/main/n/nmap/nmap_7.991+dfsg-1kali1_amd64.deb
+Size: 2035296
+SHA256: c6732a9a7a182c0e6f5ad525db1f9fbf585685dfab034d9eb0d56f95e08256f8
+SHA1: 07b82d8538270f870cfe23f619bc7db36e1dabcf
+MD5sum: 61474d68197e4c34ed8ffb8ecf542eb8
+Description: The Network Mapper
+ Nmap is a utility for network exploration or security auditing. It
+ supports ping scanning (determine which hosts are up), many port
+ scanning techniques, version detection (determine service protocols
+ and application versions listening behind ports), and TCP/IP
+ fingerprinting (remote host OS or device identification). Nmap also
+ offers flexible target and port specification, decoy/stealth scanning,
+ sunRPC scanning, and more. Most Unix and Windows platforms are
+ supported in both GUI and commandline modes. Several popular handheld
+ devices are also supported, including the Sharp Zaurus and the iPAQ.
+Commands: nmap, nping
+Original-Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
+
+Package: pipx
+Source: python-pipx
+Version: 1.15.0-1
+Installed-Size: 4412
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Architecture: all
+Depends: python3-venv, python3-argcomplete, python3-packaging, python3-platformdirs (>= 2.1), python3-userpath, python3:any
+Recommends: mkdocs (>= 1.6.1+dfsg1-3)
+Size: 889728
+SHA256: 770e8af7b003ba53e812b2a37455affc9ae867821b53e3f871a5760932f5806d
+SHA1: 6febf5f75264cc85e6f6aedcc7aac0e9ab994519
+MD5sum: 007a6ae1568e4b96e8683363734bf851
+Description: execute binaries from Python packages in isolated environments
+ pipx allows you to...
+ .
+  * Run the latest version of a CLI application from a package
+    in a temporary virtual environment,
+    leaving your system untouched after it finishes.
+  * Install packages to isolated virtual environments,
+    while globally exposing their CLI applications
+    so you can run them from anywhere.
+  * Easily list, upgrade, and uninstall packages
+    that were installed with pipx.
+ .
+ pipx runs with regular user permissions,
+ never calling "sudo pip install".
+Homepage: https://github.com/pypa/pipx
+Section: python
+Priority: optional
+Filename: pool/main/p/python-pipx/pipx_1.15.0-1_all.deb
+
+Package: python3
+Source: python3-defaults
+Version: 3.14.7-3
+Installed-Size: 81
+Maintainer: Matthias Klose <doko@debian.org>
+Architecture: amd64
+Replaces: python3-minimal (<< 3.1.2-2)
+Provides: python3-profiler, python3-supported-max (= 3.14), python3-supported-min (= 3.14)
+Depends: python3.14 (>= 3.14.7), libpython3-stdlib (= 3.14.7-3)
+Pre-Depends: python3-minimal (= 3.14.7-3)
+Suggests: python3-doc (>= 3.14.7-3), python3-tk (>= 3.14.7), python3-venv (>= 3.14.7-3)
+Conflicts: python3-distutils
+Size: 26016
+SHA256: 7a4b84ade717f6038ba089baff035f4353dc5a0375f65f98ee67a25ff72fa7b9
+SHA1: 74f8bbe586753a2cf48babfddcb8a6c0e50959ec
+MD5sum: d402dd712e9669bb45eb9df4230433b7
+Description: interactive high-level object-oriented language (default python3 version)
+ Python, the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.14).
+Multi-Arch: allowed
+Homepage: https://www.python.org/
+Tag: devel::interpreter, devel::lang:python, devel::library,
+ implemented-in::c, implemented-in::python, role::devel-lib,
+ role::program, role::shared-lib
+Section: python
+Priority: optional
+Filename: pool/main/p/python3-defaults/python3_3.14.7-3_amd64.deb
+
+Package: python3-pip
+Source: python-pip
+Version: 26.2.2+dfsg-1
+Installed-Size: 10020
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Architecture: all
+Replaces: python-pip
+Provides: pip
+Depends: ca-certificates, python3-wheel, python3:any
+Recommends: build-essential, python3-dev (>= 3.2), libjs-sphinxdoc (>= 9.0)
+Breaks: python-pip
+Size: 1413832
+SHA256: 993e00276f5fbda31d08d0389f3aecc72e16c13771803df8eff31270bed752ca
+SHA1: be15c90b83691ccda86ec30b7e3a56dbf6533207
+MD5sum: d29b939425a90101317c66e87faad1ac
+Description: Python package installer
+ pip is the Python package installer.  It integrates with virtualenv, doesn't
+ do partial installs, can save package state for replaying, can install from
+ non-egg sources, and can install from version control repositories.
+ .
+ This is the Python 3 version of the package.
+Homepage: https://pip.pypa.io/en/stable/
+Section: python
+Priority: optional
+Filename: pool/main/p/python-pip/python3-pip_26.2.2+dfsg-1_all.deb

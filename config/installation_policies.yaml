@@ -1,0 +1,27 @@
+# Installation policy. Defaults are deliberately conservative.
+default_mode: dry-run
+require_confirmation: true
+blocked_risk_levels: [HIGH, CRITICAL]
+method_preference:        # ranked best -> worst
+  - APT
+  - PIPX
+  - OFFICIAL_BINARY_RELEASE
+  - GO
+  - CARGO
+  - NPM
+  - GEM
+  - PYTHON_VENV
+  - DOCKER
+  - SOURCE_BUILD
+method_scores:
+  APT: {reliability: 10, security: 10, reproducibility: 9, isolation: 5}
+  PIPX: {reliability: 8, security: 7, reproducibility: 7, isolation: 9}
+  PYTHON_VENV: {reliability: 7, security: 6, reproducibility: 7, isolation: 9}
+  OFFICIAL_BINARY_RELEASE: {reliability: 7, security: 5, reproducibility: 8, isolation: 6}
+  GO: {reliability: 7, security: 6, reproducibility: 8, isolation: 7}
+  CARGO: {reliability: 7, security: 6, reproducibility: 8, isolation: 7}
+  NPM: {reliability: 6, security: 4, reproducibility: 6, isolation: 7}
+  GEM: {reliability: 6, security: 5, reproducibility: 6, isolation: 6}
+  DOCKER: {reliability: 7, security: 8, reproducibility: 8, isolation: 10}
+  SOURCE_BUILD: {reliability: 4, security: 3, reproducibility: 5, isolation: 3}
+trusted_docker_registries: [docker.io/library, ghcr.io, quay.io, docker.io/kalilinux]
